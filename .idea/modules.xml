@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/T1OpenSchool.iml" filepath="$PROJECT_DIR$/T1OpenSchool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TransactionService/TransactionService.iml" filepath="$PROJECT_DIR$/TransactionService/TransactionService.iml" />
     </modules>
   </component>
 </project>
