@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: transaction-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT_INNER}/${POSTGRES_DATABASE_NAME}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+
+  liquibase:
+    change-log: db/changelog/main/main-changelog.yml
+    enabled: true
+
+server:
+  port: ${TRANSACTION_SERVICE_PORT_INNER}

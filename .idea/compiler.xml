@@ -2,6 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="com.example.TransactionService.main" target="17" />
+      <module name="com.example.TransactionService.test" target="17" />
+      <module name="TransactionService" target="17" />
       <module name="TransactionService.main" target="17" />
       <module name="TransactionService.test" target="17" />
     </bytecodeTargetLevel>

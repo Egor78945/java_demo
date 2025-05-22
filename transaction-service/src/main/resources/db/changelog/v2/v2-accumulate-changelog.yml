@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: ./v2-create-transaction-type-table-changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: ./v2-fill-transaction-type-table-changelog.yml
+      relativeToChangelogFile: true
