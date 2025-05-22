@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1-2
+      author: egor_petrov
+      preConditions:
+        - onFail: MARK_RAN
+          sqlCheck:
+            expectedResult: "0"
+            sql: "SELECT COUNT(*) FROM account_type"
+      changes:
+        - insert:
+            tableName: account_type
+            columns:
+              - column:
+                  name: name
+                  value: DEBIT
+        - insert:
+            tableName: account_type
+            columns:
+              - column:
+                  name: name
+                  value: CREDIT

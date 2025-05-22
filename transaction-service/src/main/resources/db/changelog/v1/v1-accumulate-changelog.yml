@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: ./v1-create-account-type-table-changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      file: ./v1-fill-account-type-table-changelog.yml
+      relativeToChangelogFile: true

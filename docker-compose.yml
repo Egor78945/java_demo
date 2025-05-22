@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: ${POSTGRES_HOST}
+    image: postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DATABASE_NAME}
+      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT_OUTER}:${POSTGRES_PORT_INNER}
+
+  transaction-service:
+    container_name: ${TRANSACTION_SERVICE_HOST}
+    build:
+      context: ./transaction-service
+      dockerfile: Dockerfile
+      args:
+        JAVA_VERSION: ${JAVA_VERSION}
+        TRANSACTION_SERVICE_PORT_OUTER: ${TRANSACTION_SERVICE_PORT_OUTER}
+    restart: on-failure
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - ${TRANSACTION_SERVICE_PORT_OUTER}:${TRANSACTION_SERVICE_PORT_INNER}
