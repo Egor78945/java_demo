@@ -12,7 +12,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
@@ -22,20 +22,19 @@ public class Account {
     @Column(name = "balance")
     private double balance;
 
-    public Account(Client client, AccountType accountType, double balance) {
+    public Account(Client client, AccountType accountType) {
         this.client = client;
         this.accountType = accountType;
-        this.balance = balance;
     }
 
     public Account() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

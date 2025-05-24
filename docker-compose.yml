@@ -26,6 +26,7 @@ services:
     depends_on:
       - postgres
     env_file:
+      - ./env/transaction-service.env
       - .env
     ports:
       - ${TRANSACTION_SERVICE_PORT_OUTER}:${TRANSACTION_SERVICE_PORT_INNER}
