@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class AccountServiceRouterManager implements AccountServiceRouter<AbstractAccountService<Account>> {
@@ -21,11 +22,7 @@ public class AccountServiceRouterManager implements AccountServiceRouter<Abstrac
     }
 
     @Override
-    public AbstractAccountService<Account> getByAccountTypeEnumeration(AccountTypeEnumeration accountTypeEnumeration) {
-        AbstractAccountService<Account> accountService = accountServiceByAccountTypeEnum.get(accountTypeEnumeration);
-        if (accountService == null) {
-            throw new NotFoundException(String.format("account service by AccountTypeEnumeration is not found.\nAccountTypeEnumeration : %s", accountTypeEnumeration));
-        }
-        return accountService;
+    public Optional<AbstractAccountService<Account>> getByAccountTypeEnumeration(AccountTypeEnumeration accountTypeEnumeration) {
+        return Optional.ofNullable(accountServiceByAccountTypeEnum.get(accountTypeEnumeration));
     }
 }

@@ -14,6 +14,12 @@ spring:
 account:
   credit:
     start-balance: ${ACCOUNT_CREDIT_START_BALANCE}
+  transaction:
+    amount:
+      min: ${ACCOUNT_TRANSACTION_MIN_AMOUNT}
+      max: ${ACCOUNT_TRANSACTION_MAX_AMOUNT}
+  balance:
+    max: ${ACCOUNT_BALANCE_MAX_AMOUNT}
 
 server:
   port: ${TRANSACTION_SERVICE_PORT_INNER}
