@@ -1,10 +1,7 @@
 package com.example.transaction_service.controller.advice;
 
 import com.example.transaction_service.controller.advice.handler.CommonControllerExceptionHandler;
-import com.example.transaction_service.exception.AuthenticationException;
-import com.example.transaction_service.exception.InvalidDataException;
-import com.example.transaction_service.exception.NotFoundException;
-import com.example.transaction_service.exception.ProcessingException;
+import com.example.transaction_service.exception.*;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +42,10 @@ public class CommonControllerAdvice {
     @ExceptionHandler(ProcessingException.class)
     public ResponseEntity<Map<String, String>> processingExceptionHandler(ProcessingException e) {
         return new ResponseEntity<>(Map.of("processing error", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(TransactionException.class)
+    public ResponseEntity<Map<String, String>> transactionExceptionHandler(TransactionException e) {
+        return new ResponseEntity<>(Map.of("transaction error", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

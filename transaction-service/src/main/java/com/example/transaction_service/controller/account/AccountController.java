@@ -24,8 +24,10 @@ public class AccountController {
 
     @PostMapping("/registration")
     public void registerAccount(@RequestParam(value = "clientId", defaultValue = "-1") long clientId, @RequestParam(value = "accountTypeId", defaultValue = "1") long accountTypeId) {
-        accountServiceRouter.getByAccountTypeEnumeration(AccountTypeEnumeration.getById(accountTypeId)
-                        .orElseThrow(() -> new NotFoundException(String.format("unknown account type\naccount type id : %s", accountTypeId))))
+        AccountTypeEnumeration accountTypeEnumeration = AccountTypeEnumeration.getById(accountTypeId)
+                .orElseThrow(() -> new NotFoundException(String.format("unknown account type\naccount type id : %s", accountTypeId)));
+        accountServiceRouter.getByAccountTypeEnumeration(accountTypeEnumeration)
+                .orElseThrow(() -> new NotFoundException(String.format("account service by AccountTypeEnumeration is not found.\nAccountTypeEnumeration : %s", accountTypeEnumeration)))
                 .save(clientId, accountTypeId);
     }
 
@@ -33,11 +35,12 @@ public class AccountController {
     public ResponseEntity<List<Account>> getAccountsByClientId(@PathVariable("id") long id, @RequestParam(value = "accountTypeId", defaultValue = "-1") long accountTypeId) {
         AbstractAccountService<Account> accountService;
         if (accountTypeId != -1) {
-            accountService = accountServiceRouter.getByAccountTypeEnumeration(AccountTypeEnumeration.getById(accountTypeId).orElseThrow(() ->
-                    new NotFoundException(String.format("unknown account type id\nid : %s", accountTypeId))));
+            AccountTypeEnumeration accountTypeEnumeration = AccountTypeEnumeration.getById(accountTypeId).orElseThrow(() ->
+                    new NotFoundException(String.format("unknown account type id\nid : %s", accountTypeId)));
+            accountService = accountServiceRouter.getByAccountTypeEnumeration(accountTypeEnumeration).orElseThrow(() -> new NotFoundException(String.format("account service by AccountTypeEnumeration is not found.\nAccountTypeEnumeration : %s", accountTypeEnumeration)));
             return ResponseEntity.ok(accountService.getByClientIdAndAccountType(id));
         } else {
-            accountService = accountServiceRouter.getByAccountTypeEnumeration(AccountTypeEnumeration.DEBIT);
+            accountService = accountServiceRouter.getByAccountTypeEnumeration(AccountTypeEnumeration.DEBIT).get();
             return ResponseEntity.ok(accountService.getByClientId(id));
         }
 
