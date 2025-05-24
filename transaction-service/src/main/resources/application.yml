@@ -11,5 +11,9 @@ spring:
     change-log: db/changelog/main/main-changelog.yml
     enabled: true
 
+account:
+  credit:
+    start-balance: ${ACCOUNT_CREDIT_START_BALANCE}
+
 server:
   port: ${TRANSACTION_SERVICE_PORT_INNER}
