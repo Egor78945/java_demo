@@ -1,7 +1,7 @@
 package com.example.transaction_service.service.client.authentication;
 
 import com.example.transaction_service.model.client.entity.Client;
-import com.example.transaction_service.service.authentication.AbstractAuthenticationService;
+import com.example.transaction_service.service.common.authentication.AbstractAuthenticationService;
 
 /**
  * Абстрактная реализация абстрактного сервиса по аутентификации {@link AbstractAuthenticationService} для аутентификации клиентов {@link Client}

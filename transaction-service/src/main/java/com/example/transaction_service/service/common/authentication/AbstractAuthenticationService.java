@@ -1,4 +1,4 @@
-package com.example.transaction_service.service.authentication;
+package com.example.transaction_service.service.common.authentication;
 
 /**
  * Абстрактный класс, предоставляющий функционал для аутентификации

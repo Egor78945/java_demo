@@ -1,6 +1,6 @@
 package com.example.transaction_service.model.client.dto;
 
-import com.example.transaction_service.service.validation.annotation.Letters;
+import com.example.transaction_service.service.common.validation.annotation.Letters;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
