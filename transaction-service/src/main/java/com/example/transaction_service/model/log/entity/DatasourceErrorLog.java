@@ -75,7 +75,7 @@ public class DatasourceErrorLog {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         DatasourceErrorLog that = (DatasourceErrorLog) o;
-        return id == that.id;
+        return id.equals(that.getId());
     }
 
     @Override

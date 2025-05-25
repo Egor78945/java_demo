@@ -5,6 +5,10 @@ import com.example.transaction_service.repository.AccountRepository;
 
 import java.util.List;
 
+/**
+ * Абстрактный класс, выполняющий действия, связанные с клиентскими аккаунтами {@link Account} типа <b>DEBIT</b>
+ * @param <A> Тип, являющийся пользовательским аккаунтом {@link Account} или его наследником
+ */
 public abstract class AbstractDebitAccountService <A extends Account> extends AbstractAccountService<A>{
 
     public AbstractDebitAccountService(AccountRepository accountRepository) {

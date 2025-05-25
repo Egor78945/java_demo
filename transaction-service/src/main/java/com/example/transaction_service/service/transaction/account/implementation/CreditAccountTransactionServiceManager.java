@@ -10,7 +10,7 @@ import com.example.transaction_service.model.transaction.type.enumeration.Transa
 import com.example.transaction_service.repository.AccountRepository;
 import com.example.transaction_service.repository.TransactionRepository;
 import com.example.transaction_service.repository.TransactionTypeRepository;
-import com.example.transaction_service.service.transaction.account.CreditAccountTransactionService;
+import com.example.transaction_service.service.transaction.account.AbstractCreditAccountTransactionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +19,11 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Реализация абстрактной реализации сервиса по работе странзакциями {@link AbstractCreditAccountTransactionService} типа <b>CREDIT</b>
+ */
 @Service
-public class CreditAccountTransactionServiceManager extends CreditAccountTransactionService<Transaction> {
+public class CreditAccountTransactionServiceManager extends AbstractCreditAccountTransactionService<Transaction> {
     private final TransactionRepository transactionRepository;
     private final AccountRepository accountRepository;
     private final AccountEnvironment accountEnvironment;

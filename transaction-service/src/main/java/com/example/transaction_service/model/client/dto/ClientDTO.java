@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
+/**
+ * Класс, представляющий собой DTO основных клиентских полей
+ */
 public class ClientDTO {
     @NotNull(message = "name is null")
     @NotBlank(message = "name is blank")

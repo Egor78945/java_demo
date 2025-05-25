@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Контроллер, принимающий запросы, связанные с аутентификацией клиентов
+ */
 @RestController
 @RequestMapping("/api/v1/authentication")
 @CommonControllerExceptionHandler
@@ -22,6 +25,10 @@ public class ClientAuthenticationController {
         this.clientAuthenticationService = clientAuthenticationService;
     }
 
+    /**
+     * Метод, выполняющий регистрацию нового клиента
+     * @param clientDTO Регистрационные данные нового клиента {@link Client}
+     */
     @PostMapping("/registration")
     public void registration(@RequestBody @Valid ClientDTO clientDTO) {
         clientAuthenticationService.registration(ClientMapper.mapTo(clientDTO));

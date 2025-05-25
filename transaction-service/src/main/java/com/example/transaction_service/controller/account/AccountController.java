@@ -9,9 +9,13 @@ import com.example.transaction_service.service.account.router.AccountServiceRout
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.transaction_service.model.client.entity.Client;
 
 import java.util.List;
 
+/**
+ * Контроллер, принимающий запросы, связанные с клиентскими аккаунтами
+ */
 @RestController
 @RequestMapping("/api/v1/account")
 @CommonControllerExceptionHandler
@@ -22,6 +26,11 @@ public class AccountController {
         this.accountServiceRouter = accountServiceRouter;
     }
 
+    /**
+     * Метод, регистрирующий новый клиентский аккаунт
+     * @param clientId Id существующего клиента {@link Client}
+     * @param accountTypeId Id существующего типа клиентского аккаунта {@link AccountTypeEnumeration}
+     */
     @PostMapping("/registration")
     public void registerAccount(@RequestParam(value = "clientId", defaultValue = "-1") long clientId, @RequestParam(value = "accountTypeId", defaultValue = "1") long accountTypeId) {
         AccountTypeEnumeration accountTypeEnumeration = AccountTypeEnumeration.getById(accountTypeId)
@@ -31,6 +40,12 @@ public class AccountController {
                 .save(clientId, accountTypeId);
     }
 
+    /**
+     * Метод, возвращающий список аккаунтов определённого клиента по его Id
+     * @param id Id существующего клиента {@link Client}
+     * @param accountTypeId Id существующего типа клиентского аккаунта {@link AccountTypeEnumeration}
+     * @return Список клиентских аккаунтов {@link List}
+     */
     @GetMapping("/{id}")
     public ResponseEntity<List<Account>> getAccountsByClientId(@PathVariable("id") long id, @RequestParam(value = "accountTypeId", defaultValue = "-1") long accountTypeId) {
         AbstractAccountService<Account> accountService;

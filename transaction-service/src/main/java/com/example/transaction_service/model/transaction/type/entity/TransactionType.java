@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+/**
+ * Entity типа транзакций по клиентским аккаунтам
+ */
 @Entity
 @Table(name = "transaction_type")
 public class TransactionType {

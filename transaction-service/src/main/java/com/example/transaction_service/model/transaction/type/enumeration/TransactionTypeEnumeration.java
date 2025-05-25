@@ -3,6 +3,9 @@ package com.example.transaction_service.model.transaction.type.enumeration;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Перечисление типов транзакций по клиентским аккаунтам
+ */
 public enum TransactionTypeEnumeration {
     INSERT(1), TRANSFER(2);
     private final long id;

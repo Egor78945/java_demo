@@ -3,6 +3,7 @@ package com.example.transaction_service.service.client.authentication.implementa
 import com.example.transaction_service.exception.AuthenticationException;
 import com.example.transaction_service.model.client.entity.Client;
 import com.example.transaction_service.repository.ClientRepository;
+import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
 import com.example.transaction_service.service.client.authentication.AbstractClientAuthenticationService;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,12 @@ public class ClientAuthenticationServiceManager extends AbstractClientAuthentica
     }
 
     @Override
+    @LogDatasourceError
     public void registration(Client registrationModel) {
         if (registrationModel.getId() == null) {
             clientRepository.save(registrationModel);
         } else {
-            throw new AuthenticationException("client id is not null");
+            throw new AuthenticationException(String.format("client can not be registered successfully\nClient : %s", registrationModel));
         }
     }
 }
