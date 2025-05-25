@@ -1,4 +1,4 @@
-package com.example.transaction_service.service.aop.aspect.logging;
+package com.example.transaction_service.service.common.aop.aspect.logging;
 
 import com.example.transaction_service.model.log.entity.DatasourceErrorLog;
 import com.example.transaction_service.service.logging.LoggingService;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
+import com.example.transaction_service.service.common.aop.annotation.LogDatasourceError;
 
 /**
  * Общий аспект, выполняющий действия с логгированием
@@ -28,7 +28,7 @@ public class CommonServiceLoggingAspect {
      * Advice, отлавливающий исключения из методов, помеченных аннотацией {@link LogDatasourceError}
      * @param e Выброшенное методом исключение
      */
-    @AfterThrowing(pointcut = "@annotation(com.example.transaction_service.service.aop.annotation.LogDatasourceError)", throwing = "e")
+    @AfterThrowing(pointcut = "@annotation(com.example.transaction_service.service.common.aop.annotation.LogDatasourceError)", throwing = "e")
     public void saveDatasourceLogAfterMethodThrowing(Exception e) {
         loggingService.log(new DatasourceErrorLog(e.getClass().getSimpleName(), Arrays.toString(e.getStackTrace()), e.getMessage(), Timestamp.valueOf(LocalDateTime.now())));
     }

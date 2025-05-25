@@ -10,7 +10,7 @@ import com.example.transaction_service.model.transaction.type.enumeration.Transa
 import com.example.transaction_service.repository.AccountRepository;
 import com.example.transaction_service.repository.TransactionRepository;
 import com.example.transaction_service.repository.TransactionTypeRepository;
-import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
+import com.example.transaction_service.service.common.aop.annotation.LogDatasourceError;
 import com.example.transaction_service.service.transaction.account.AbstractDebitAccountTransactionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

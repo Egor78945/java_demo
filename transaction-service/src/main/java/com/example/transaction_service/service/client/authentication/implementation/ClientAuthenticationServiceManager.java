@@ -3,7 +3,7 @@ package com.example.transaction_service.service.client.authentication.implementa
 import com.example.transaction_service.exception.AuthenticationException;
 import com.example.transaction_service.model.client.entity.Client;
 import com.example.transaction_service.repository.ClientRepository;
-import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
+import com.example.transaction_service.service.common.aop.annotation.LogDatasourceError;
 import com.example.transaction_service.service.client.authentication.AbstractClientAuthenticationService;
 import org.springframework.stereotype.Service;
 

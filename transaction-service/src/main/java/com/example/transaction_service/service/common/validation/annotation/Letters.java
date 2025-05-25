@@ -1,6 +1,6 @@
-package com.example.transaction_service.service.validation.annotation;
+package com.example.transaction_service.service.common.validation.annotation;
 
-import com.example.transaction_service.service.validation.validator.LettersValidator;
+import com.example.transaction_service.service.common.validation.validator.LettersValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

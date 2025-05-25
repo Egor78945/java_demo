@@ -1,4 +1,4 @@
-package com.example.transaction_service.service.aop.annotation;
+package com.example.transaction_service.service.common.aop.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
