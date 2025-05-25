@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+/**
+ * Entity типа клиентского аккаунта
+ */
 @Entity
 @Table(name = "account_type")
 public class AccountType {

@@ -3,6 +3,7 @@ package com.example.transaction_service.service.client.implementation;
 import com.example.transaction_service.exception.NotFoundException;
 import com.example.transaction_service.model.client.entity.Client;
 import com.example.transaction_service.repository.ClientRepository;
+import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
 import com.example.transaction_service.service.client.AbstractClientService;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class ClientServiceManager extends AbstractClientService<Client> {
     }
 
     @Override
+    @LogDatasourceError
     public void save(Client client) {
         clientRepository.save(client);
     }

@@ -1,6 +1,5 @@
 package com.example.transaction_service.service.account.router.implementation;
 
-import com.example.transaction_service.exception.NotFoundException;
 import com.example.transaction_service.model.account.entity.Account;
 import com.example.transaction_service.model.account.type.enumeration.AccountTypeEnumeration;
 import com.example.transaction_service.service.account.AbstractAccountService;
@@ -13,6 +12,9 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Реализация интерфейса для маршрутизации {@link AccountServiceRouter} по сервисам клиентских аккаунтов
+ */
 @Component
 public class AccountServiceRouterManager implements AccountServiceRouter<AbstractAccountService<Account>> {
     private final Map<AccountTypeEnumeration, AbstractAccountService<Account>> accountServiceByAccountTypeEnum;

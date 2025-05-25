@@ -10,7 +10,8 @@ import com.example.transaction_service.model.transaction.type.enumeration.Transa
 import com.example.transaction_service.repository.AccountRepository;
 import com.example.transaction_service.repository.TransactionRepository;
 import com.example.transaction_service.repository.TransactionTypeRepository;
-import com.example.transaction_service.service.transaction.account.DebitAccountTransactionService;
+import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
+import com.example.transaction_service.service.transaction.account.AbstractDebitAccountTransactionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +20,11 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Реализация абстрактной реализации сервиса по работе странзакциями {@link AbstractDebitAccountTransactionService} типа <b>DEBIT</b>
+ */
 @Service
-public class DebitAccountTransactionServiceManager extends DebitAccountTransactionService<Transaction> {
+public class DebitAccountTransactionServiceManager extends AbstractDebitAccountTransactionService<Transaction> {
     private final TransactionRepository transactionRepository;
     private final AccountRepository accountRepository;
     private final AccountEnvironment accountEnvironment;
@@ -35,6 +39,7 @@ public class DebitAccountTransactionServiceManager extends DebitAccountTransacti
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
+    @LogDatasourceError
     public double insert(long recipientAccountId, double amount) {
         Account recipient = accountRepository.findAccountById(recipientAccountId).orElseThrow(() -> new NotFoundException(String.format("account is not found\nid : %s", recipientAccountId)));
         Transaction transaction = new Transaction(recipient, recipient, transactionTypeRepository.findById(TransactionTypeEnumeration.INSERT.getId()).orElseThrow(() -> new NotFoundException(String.format("transaction type is not found by id\nid : %s", TransactionTypeEnumeration.INSERT.getId()))), amount, Timestamp.valueOf(LocalDateTime.now()));
@@ -50,6 +55,7 @@ public class DebitAccountTransactionServiceManager extends DebitAccountTransacti
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
+    @LogDatasourceError
     public double transfer(long senderAccountId, long recipientAccountId, double amount) {
         Account recipient = accountRepository.findAccountById(recipientAccountId).orElseThrow(() -> new NotFoundException(String.format("account is not found\nid : %s", recipientAccountId)));
         Account sender = accountRepository.findAccountById(senderAccountId).orElseThrow(() -> new NotFoundException(String.format("account is not found\nid : %s", senderAccountId)));

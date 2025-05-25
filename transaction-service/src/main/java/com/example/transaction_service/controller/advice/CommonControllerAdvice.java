@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Обработчик исключений для всех контроллеров
+ */
 @ControllerAdvice(annotations = CommonControllerExceptionHandler.class)
 public class CommonControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)

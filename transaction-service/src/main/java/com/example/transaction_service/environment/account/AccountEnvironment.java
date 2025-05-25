@@ -3,6 +3,9 @@ package com.example.transaction_service.environment.account;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * Класс, хранящий переменные окружения, связанные с клиентскими аккаунтами
+ */
 @Component
 public class AccountEnvironment {
     private final double ACCOUNT_CREDIT_START_BALANCE;

@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+/**
+ * Entity клиентского аккаунта
+ */
 @Entity
 @Table(name = "account")
 public class Account {
@@ -66,11 +69,21 @@ public class Account {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id == account.id;
+        return Objects.equals(id, account.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", client=" + client +
+                ", accountType=" + accountType +
+                ", balance=" + balance +
+                '}';
     }
 }

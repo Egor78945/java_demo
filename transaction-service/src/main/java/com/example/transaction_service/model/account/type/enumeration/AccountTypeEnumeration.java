@@ -1,10 +1,11 @@
 package com.example.transaction_service.model.account.type.enumeration;
 
-import org.apache.commons.collections4.map.UnmodifiableMap;
-
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Перечисление типов клиентских аккаунтов
+ */
 public enum AccountTypeEnumeration {
     DEBIT(1), CREDIT(2);
     private final long id;

@@ -4,6 +4,9 @@ import com.example.transaction_service.service.validation.annotation.Letters;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+/**
+ * Валидатор для аннотации {@link Letters}, который проверяет, содержит ли строка какие-то символы, помимо букв
+ */
 public class LettersValidator implements ConstraintValidator<Letters, String> {
     @Override
     public boolean isValid(String string, ConstraintValidatorContext constraintValidatorContext) {

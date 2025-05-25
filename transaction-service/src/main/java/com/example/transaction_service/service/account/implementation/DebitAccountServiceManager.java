@@ -10,10 +10,14 @@ import com.example.transaction_service.repository.AccountRepository;
 import com.example.transaction_service.repository.AccountTypeRepository;
 import com.example.transaction_service.repository.ClientRepository;
 import com.example.transaction_service.service.account.AbstractDebitAccountService;
+import com.example.transaction_service.service.aop.annotation.LogDatasourceError;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Класс, выполняющий действия, связанные с клиентскими аккаунтами {@link Account} типа <b>DEBIT</b>
+ */
 @Service
 public class DebitAccountServiceManager extends AbstractDebitAccountService<Account> {
     private final ClientRepository clientRepository;
@@ -26,6 +30,7 @@ public class DebitAccountServiceManager extends AbstractDebitAccountService<Acco
     }
 
     @Override
+    @LogDatasourceError
     public void save(long clientId, long accountTypeId) {
         AccountType accountType = accountTypeRepository.findById(accountTypeId).orElseThrow(() -> new NotFoundException(String.format("unknown account type id\naccount type id : %s", accountTypeId)));
         Client client = clientRepository.findById(clientId).orElseThrow(() -> new NotFoundException(String.format("client not found by id\nid : %s", clientId)));

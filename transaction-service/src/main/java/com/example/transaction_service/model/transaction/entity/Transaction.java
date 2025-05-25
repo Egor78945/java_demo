@@ -7,6 +7,9 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * Entity транзакций по клиентских аккаунтам
+ */
 @Entity
 @Table(name = "transaction")
 public class Transaction {
